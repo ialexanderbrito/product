@@ -14,12 +14,13 @@ function changeSize() {
 
 function changeColor() {
   if (!animationEnd) return;
-
   let primary = this.getAttribute('primary');
   let color = this.getAttribute('color');
   let shoe = document.querySelector(`.shoe[color="${color}"]`);
   let gradient = document.querySelector(`.gradient[color="${color}"]`);
   let prevGradient = document.querySelector(`.gradient[color="${prevColor}"]`);
+
+  if (color == prevColor) return;
 
   colors.forEach((c) => c.classList.remove('active'));
   this.classList.add('active');
@@ -46,15 +47,15 @@ colors.forEach((c) => c.addEventListener('click', changeColor));
 
 let x = window.matchMedia('(max-width: 1000px)');
 
-function changeHeigth() {
+function changeHeight() {
   if (x.matches) {
-    let shoeHeigth = shoes[0].offsetHeigth;
-    shoeBg.style.heigth = `${shoeHeigth * 0.9}px`;
+    let shoeHeight = shoes[0].offsetHeight;
+    shoeBg.style.height = `${shoeHeight * 0.9}px`;
   } else {
-    shoeBg.style.heigth = '475px';
+    shoeBg.style.height = '475px';
   }
 }
 
-changeHeigth();
+changeHeight();
 
-window.addEventListener('resize', changeHeigth);
+window.addEventListener('resize', changeHeight);
